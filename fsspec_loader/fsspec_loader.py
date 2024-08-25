@@ -52,7 +52,7 @@ class FsSpecFileSystemLoader(jinja2.BaseLoader):
     def list_templates(self) -> list[str]:
         return [
             f"{path}{self.fs.sep}{f}" if path else f
-            for path, _dirs, files in self.fs.walk(self.fs.root_marker)
+            for path, _dirs, files in self.fs.walk(self.search_path if self.search_path else self.fs.root_marker)
             for f in files
         ]
 
